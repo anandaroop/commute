@@ -23,6 +23,9 @@ const fixture = [
 
 function App() {
   const [messages, setMessages] = useState<Message[] | undefined>(undefined);
+  const [lastFetch, setLastFetch] = useState<string>(
+    new Date().toLocaleString()
+  );
 
   useEffect(() => {
     const isDebugging = new URLSearchParams(document.location.search).has(
@@ -35,20 +38,23 @@ function App() {
         .then((res) => res.json())
         .then((json) => setMessages(json.data));
     }
-  }, []);
+  }, [lastFetch]);
 
-  const date = new Date().toLocaleString();
-
-  const className = messages === undefined ? "App" : messages.length === 0 ? "App ok" : "App alert";
+  const className =
+    messages === undefined
+      ? "App"
+      : messages.length === 0
+      ? "App ok"
+      : "App alert";
 
   return (
     <div className={className}>
       <h1>Commute</h1>
 
-      <p>{date}</p>
+      <p>{lastFetch}</p>
 
       {messages === undefined ? (
-        <Spinner style={{marginTop: "2em"}} />
+        <Spinner style={{ marginTop: "2em" }} />
       ) : messages.length === 0 ? (
         <p>No alerts found</p>
       ) : (
@@ -68,6 +74,19 @@ function App() {
           ))}
         </div>
       )}
+
+      {!!messages ? (
+        <p>
+          <button
+            onClick={() => {
+              setMessages(undefined);
+              setLastFetch(new Date().toLocaleString());
+            }}
+          >
+            Refresh
+          </button>
+        </p>
+      ) : null}
     </div>
   );
 }
