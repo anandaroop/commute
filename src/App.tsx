@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import { Spinner } from "./Spinner";
 
 interface Message {
   id: string;
@@ -47,7 +48,7 @@ function App() {
       <p>{date}</p>
 
       {messages === undefined ? (
-        <p>Loading...</p>
+        <Spinner style={{marginTop: "2em"}} />
       ) : messages.length === 0 ? (
         <p>No alerts found</p>
       ) : (
