@@ -44,3 +44,12 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## master → main
+
+```sh
+git branch -m master main
+git push -u origin main
+# switch default branch in GH first
+git push origin --delete master
+```
