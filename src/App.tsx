@@ -34,9 +34,10 @@ function App() {
     if (isDebugging) {
       setMessages(fixture);
     } else {
-      fetch("https://api3.val.town/eval/@roop.currentCommuteAlertMessages()")
+      const url = "https://api.val.town/v1/run/roop.currentCommuteAlertMessages"
+      fetch(url)
         .then((res) => res.json())
-        .then((json) => setMessages(json.data));
+        .then(setMessages);
     }
   }, [lastFetch]);
 
