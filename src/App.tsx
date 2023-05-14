@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Spinner } from "./Spinner";
+import { Line, SubwaySymbol } from "./SubwaySymbol";
 
 interface Message {
   id: string;
@@ -45,8 +46,8 @@ function App() {
     messages === undefined
       ? "App"
       : messages.length === 0
-      ? "App ok"
-      : "App alert";
+        ? "App ok"
+        : "App alert";
 
   return (
     <div className={className}>
@@ -65,7 +66,7 @@ function App() {
               <div>
                 {message.routes.map((route) => (
                   <div key={route}>
-                    <img src={`/lines/${route}.svg`} alt={route} />
+                    <SubwaySymbol line={route as Line} size={1.5}/>
                   </div>
                 ))}
               </div>
